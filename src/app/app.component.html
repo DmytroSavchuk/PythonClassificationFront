@@ -1,0 +1,20 @@
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand nav-text" href="#">Data Visualisation</a></mdb-navbar-brand>
+</mdb-navbar>
+
+<div class="btn-group basic-dropdown" mdbDropdown>
+  <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
+          mdbWavesEffect>
+    Choose Method
+  </button>
+
+  <div class="dropdown-menu dropdown-primary">
+    <a class="dropdown-item" href="#" *ngFor="let method of methods"
+       (click)="setChosenMethod(method)">{{method.name}}</a>
+  </div>
+</div>
+<app-python-classification *ngIf="chosenMethod != null" [method]="chosenMethod"></app-python-classification>
+
+<!--/.Navbar-->
+
