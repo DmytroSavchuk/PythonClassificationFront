@@ -111,3 +111,8 @@ li{
   grid-column-end: 3;
   margin-left: 30%;
 }
+
+.md-form {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}

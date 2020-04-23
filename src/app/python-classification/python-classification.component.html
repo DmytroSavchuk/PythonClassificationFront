@@ -4,22 +4,22 @@
     <h1>{{method.name}}</h1>
     <form method="post" #myForm="ngForm" class="page-left">
       <ul class="field-container">
-        <div *ngFor="let argument of method.argumentsOfMethod" class="field">
-          <li *ngIf="argument.type === 'string'">
+        <div *ngFor="let argument of argumentsKeys" class="field">
+          <li *ngIf="method.methodArgs.get(argument) === 'STRING'">
             <div class="md-form">
-              <input mdbInput type="text" id="{{argument.name}}" class="form-control" required name="{{argument.name}}">
-              <label for="{{argument.name}}" class="">{{argument.name}}</label>
+              <input mdbInput type="text" id="{{argument}}" class="form-control" required name="{{argument}}">
+              <label for="{{argument}}" class="">{{argument}}</label>
             </div>
           </li>
-          <li *ngIf="argument.type === 'number'">
+          <li *ngIf="method.methodArgs.get(argument)  === 'NUMBER'">
             <div class="md-form">
-              <input mdbInput type="number" id="{{argument.name}}" class="form-control" required
-                     name="{{argument.name}}">
-              <label for="{{argument.name}}" class="">{{argument.name}}</label>
+              <input mdbInput type="number" id="{{argument}}" class="form-control" required
+                     name="{{argument}}">
+              <label for="{{argument}}" class="">{{argument}}</label>
             </div>
           </li>
-          <li *ngIf="argument.type === 'boolean'" class="boolean">
-            <mdb-checkbox [default]="true" name="{{argument.name}}">{{argument.name}}</mdb-checkbox>
+          <li *ngIf="method.methodArgs.get(argument)  === 'BOOLEAN'" class="boolean">
+            <mdb-checkbox [default]="true" name="{{argument}}">{{argument}}</mdb-checkbox>
           </li>
         </div>
         <li class="files-grid">
