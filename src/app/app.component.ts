@@ -32,17 +32,24 @@ export class AppComponent implements OnInit {
           new Argument('number', 'Intercept Scaling'), new Argument('string', 'Class Weight'), new Argument('number', 'Verbose'),
             new Argument('number', 'Random State'), new Argument('number', 'Max Iterations')]));
     this.methods.push(new Method('SVC', [new Argument('number', 'C'), new Argument('string', 'Kernel'),
-      new Argument('number', 'degree'), new Argument('string', 'Gamma'), new Argument('number', 'Coefficient 0'),
-        new Argument('boolean', 'shrinking'), new Argument('boolean', 'probability'), new Argument('number', 'tol'),
+      new Argument('number', 'Degree'), new Argument('string', 'Gamma'), new Argument('number', 'Coefficient 0'),
+        new Argument('boolean', 'Shrinking'), new Argument('boolean', 'Probability'), new Argument('number', 'Tol'),
           new Argument('string', 'Class Weight'), new Argument('boolean', 'Verbose'), new Argument('number', 'Max Iterations'),
             new Argument('string', 'Decision Function Shape'), new Argument('boolean', 'Random State')]));
   }
 
   ngOnInit(): void {
     this.initializeMethods();
+    this.sortArguments();
   }
 
   setChosenMethod(method: Method) {
     this.chosenMethod = method;
+  }
+
+  sortArguments(){
+    for (const a of this.methods){
+      a.argumentsOfMethod.sort(((one, two) => (one.type.localeCompare(two.type))));
+    }
   }
 }

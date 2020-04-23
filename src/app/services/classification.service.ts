@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ClassificationService {
 
-  private link = 'https://python-classification.herokuapp.com/';
+  private link = 'https://python-classification-back.herokuapp.com/';
 
   constructor(private http: HttpClient) {
   }

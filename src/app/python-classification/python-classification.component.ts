@@ -10,21 +10,25 @@ import {Method} from '../models/Method';
 export class PythonClassificationComponent implements OnInit {
   @Input() method: Method;
   private object;
-  public numbers: number[] = [];
+  testData: File = null;
+  data: File = null;
   constructor(private service: ClassificationService) {
   }
 
   ngOnInit(): void {
-    this.generateNumbers();
     this.service.testData().subscribe(res => {
       this.object = res;
+      console.log(res);
     });
-    console.log(this.method);
   }
 
-  private generateNumbers(){
-    for (let i = 0; i < 100; i++){
-      this.numbers.push(i);
-    }
+  public onChangeDataFile(files: FileList){
+    this.data = files[0];
+    console.log(files);
+  }
+
+  public onChangeTestDataFile(files: FileList){
+    this.testData = files[0];
+    console.log(files);
   }
 }

@@ -1,27 +1,53 @@
+<!--suppress ALL -->
 <div class="classification">
-  <h1>{{method.name}}</h1>
-  <div>
-    <ul class="field-container">
-      <div *ngFor="let argument of method.argumentsOfMethod" class="field">
-        <li *ngIf="argument.type === 'string'">
-          <div class="md-form">
-            <input mdbInput type="text" id="{{argument.name}}" class="form-control">
-            <label for="{{argument.name}}" class="">{{argument.name}}</label>
+  <div class="grid-container">
+    <h1>{{method.name}}</h1>
+    <form method="post" #myForm="ngForm" class="page-left">
+      <ul class="field-container">
+        <div *ngFor="let argument of method.argumentsOfMethod" class="field">
+          <li *ngIf="argument.type === 'string'">
+            <div class="md-form">
+              <input mdbInput type="text" id="{{argument.name}}" class="form-control" required name="{{argument.name}}">
+              <label for="{{argument.name}}" class="">{{argument.name}}</label>
+            </div>
+          </li>
+          <li *ngIf="argument.type === 'number'">
+            <div class="md-form">
+              <input mdbInput type="number" id="{{argument.name}}" class="form-control" required
+                     name="{{argument.name}}">
+              <label for="{{argument.name}}" class="">{{argument.name}}</label>
+            </div>
+          </li>
+          <li *ngIf="argument.type === 'boolean'" class="boolean">
+            <mdb-checkbox [default]="true" name="{{argument.name}}">{{argument.name}}</mdb-checkbox>
+          </li>
+        </div>
+        <li class="files-grid">
+          <div class="file-one">
+            <p class="file-text">Test data</p>
+            <div class="dropzone">
+              <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+              <input type="file" class="upload-input" (change)="onChangeTestDataFile($event.target.files)">
+            </div>
+            <p class="file-text">Uploaded file: <i *ngIf="testData != null">{{testData.name}}</i></p>
+          </div>
+          <div class="file-two">
+            <p class="file-text">Data</p>
+            <div class="dropzone">
+              <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+              <input type="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
+            </div>
+            <p class="file-text">Uploaded file: <i *ngIf="data != null">{{data.name}}</i></p>
           </div>
         </li>
-        <li *ngIf="argument.type === 'number'">
-          <div class="md-form">
-            <input mdbInput type="number" id="{{argument.name + 'number'}}" class="form-control">
-            <label for="{{argument.name + 'number'}}" class="">{{argument.name}}</label>
-          </div>
-        </li>
-        <li *ngIf="argument.type === 'boolean'" class="boolean">
-          <mdb-checkbox [default]="true">{{argument.name}}</mdb-checkbox>
-        </li>
+      </ul>
+      <div class="center-button">
+        <button type="submit" mdbBtn color="primary" mdbWavesEffect>Send</button>
       </div>
-    </ul>
+    </form>
+    <app-result class="page-right"></app-result>
   </div>
 </div>
-<!--  <p *ngFor="let i of numbers">{{i}}</p>-->
+
 
 
