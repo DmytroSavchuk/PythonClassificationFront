@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   title = 'DataVisualisation';
   public methods: Method[] = [];
   public chosenMethod: Method;
-  public arrayOfArg;
+
   constructor(private service: ClassificationService) {
   }
 

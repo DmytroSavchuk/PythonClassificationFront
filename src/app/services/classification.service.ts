@@ -17,6 +17,6 @@ export class ClassificationService {
     return this.http.get(this.link + '/test-data');
   }
   public getMethods() {
-    return this.http.get<Method[]>(this.localLink + '/classification/methods');
+    return this.http.get<Method[]>(this.link + '/classification/methods');
   }
 }

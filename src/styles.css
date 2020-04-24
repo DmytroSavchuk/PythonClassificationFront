@@ -12,3 +12,7 @@ footer{
 .content-wrap {
   padding-bottom: 10rem;    /* Footer height */
 }
+
+.copy_right{
+  margin-right: 1%;
+}

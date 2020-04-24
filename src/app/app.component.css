@@ -1,11 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
-.nav-text{
+
+.nav-item, .navbar-brand {
   font-family: 'Bitter', serif;
 }
 
-
-.basic-dropdown{
-  margin-top: 4%;
-  margin-left: 10%;
+.basic-dropdown {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 14%;
 }
 
+.btn-group{
+
+}
+
+.logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  width: 20%;
+}

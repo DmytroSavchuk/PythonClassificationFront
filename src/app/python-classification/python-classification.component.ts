@@ -14,6 +14,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   data: File = null;
   argumentsKeys = null;
   ifInitExecuted = false;
+
   constructor(private service: ClassificationService) {
   }
 
@@ -31,12 +32,12 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
     // });
   }
 
-  public onChangeDataFile(files: FileList){
+  public onChangeDataFile(files: FileList) {
     this.data = files[0];
     console.log(files);
   }
 
-  public onChangeTestDataFile(files: FileList){
+  public onChangeTestDataFile(files: FileList) {
     this.testData = files[0];
     console.log(files);
   }
