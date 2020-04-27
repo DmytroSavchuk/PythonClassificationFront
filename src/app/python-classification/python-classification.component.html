@@ -19,7 +19,7 @@
             </div>
           </li>
           <li *ngIf="method.methodArgs.get(argument)  === 'BOOLEAN'" class="boolean">
-            <mdb-checkbox [default]="true" name="{{argument}}">{{argument}}</mdb-checkbox>
+            <mdb-checkbox [default]="true" name="{{argument}}" id="{{argument}}">{{argument}}</mdb-checkbox>
           </li>
         </div>
         <li class="files-grid">
@@ -27,22 +27,22 @@
             <p class="file-text">Test data</p>
             <div class="dropzone">
               <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
-              <input type="file" class="upload-input" (change)="onChangeTestDataFile($event.target.files)">
+              <input type="file" name="file" class="upload-input" (change)="onChangeTestDataFile($event.target.files)">
             </div>
-            <p class="file-text">Uploaded file: <i *ngIf="testData != null">{{testData.name}}</i></p>
+            <p class="file-text">Uploaded file: <i *ngIf="testData != null">{{testData.toString()}}</i></p>
           </div>
           <div class="file-two">
             <p class="file-text">Data</p>
             <div class="dropzone">
               <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
-              <input type="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
+              <input type="file" name="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
             </div>
-            <p class="file-text">Uploaded file: <i *ngIf="data != null">{{data.name}}</i></p>
+            <p class="file-text">Uploaded file: <i *ngIf="data != null">{{data.toString()}}</i></p>
           </div>
         </li>
       </ul>
       <div class="center-button">
-        <button type="submit" mdbBtn color="primary" mdbWavesEffect>Send</button>
+        <button type="submit" mdbBtn color="primary" mdbWavesEffect (click)="submitButtonClicked()">Send</button>
       </div>
     </form>
     <app-result class="page-right"></app-result>

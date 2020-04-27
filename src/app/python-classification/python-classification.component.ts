@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ClassificationService} from '../services/classification.service';
 import {Method} from '../models/Method';
+import {ClassificationRequest} from '../models/ClassificationRequest';
 
 @Component({
   selector: 'app-python-classification',
@@ -10,8 +11,8 @@ import {Method} from '../models/Method';
 export class PythonClassificationComponent implements OnInit, OnChanges {
   @Input() method: Method;
   private object;
-  testData: File = null;
-  data: File = null;
+  testData: FormData = new FormData();
+  data: FormData = new FormData();
   argumentsKeys = null;
   ifInitExecuted = false;
 
@@ -21,24 +22,17 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.argumentsKeys = Array.from(this.method.methodArgs.keys());
     this.ifInitExecuted = true;
-    // for (const i of this.argumentsKeys)
-    // {
-    //   console.log(this.method.methodArgs.get(i));
-    // }
-    // console.log(this.argumentsKeys);
-    // this.service.testData().subscribe(res => {
-    //   this.object = res;
-    //   console.log(res);
-    // });
   }
 
   public onChangeDataFile(files: FileList) {
-    this.data = files[0];
+    this.data.append('file', files[0]);
+    this.service.sendDataFile(this.data);
     console.log(files);
   }
 
   public onChangeTestDataFile(files: FileList) {
-    this.testData = files[0];
+    this.testData.append('file', files[0]);
+    this.service.sendTestDataFile(this.testData);
     console.log(files);
   }
 
@@ -47,5 +41,14 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
     if (this.ifInitExecuted) {
       this.ngOnInit();
     }
+  }
+
+  public submitButtonClicked() {
+    let form;
+    for (const i of this.argumentsKeys) {
+      form = (document.getElementById(i) as HTMLInputElement);
+      form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
+    }
+    this.service.classify(new ClassificationRequest());
   }
 }
