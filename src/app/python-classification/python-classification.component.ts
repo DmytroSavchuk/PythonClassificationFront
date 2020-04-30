@@ -10,7 +10,6 @@ import {ClassificationRequest} from '../models/ClassificationRequest';
 })
 export class PythonClassificationComponent implements OnInit, OnChanges {
   @Input() method: Method;
-  private object;
   testData: FormData = new FormData();
   data: FormData = new FormData();
   argumentsKeys = null;
@@ -37,7 +36,6 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(...args: any[]) {
-    console.log('onChange fired');
     if (this.ifInitExecuted) {
       this.ngOnInit();
     }
@@ -45,10 +43,41 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
 
   public submitButtonClicked() {
     let form;
+    const mapOfArgs = {};
+    const degreeMap = {
+      degree: 2
+    };
     for (const i of this.argumentsKeys) {
       form = (document.getElementById(i) as HTMLInputElement);
-      form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
+      if (form != null)
+      {
+        form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
+        mapOfArgs[i] = this.getValueFromForm(form);
+      }
+
     }
-    this.service.classify(new ClassificationRequest());
+    console.log(mapOfArgs);
+    console.log(degreeMap);
+    this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
+      mapOfArgs, degreeMap));
+  }
+
+  private getValueFromForm(form: HTMLInputElement) {
+    switch (form.type) {
+      case 'number_list':
+        return null;
+      case 'checkbox':
+        return form.checked;
+      case 'number':
+        if (form.value === '') {
+          return null;
+        }
+        return Number(form.value);
+      case 'string':
+        if (form.value === '') {
+          return null;
+        }
+        return form.value;
+    }
   }
 }
