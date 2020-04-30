@@ -2,6 +2,8 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ClassificationService} from '../services/classification.service';
 import {Method} from '../models/Method';
 import {ClassificationRequest} from '../models/ClassificationRequest';
+import {TSMap} from 'typescript-map';
+import {ResultService} from '../services/result.service';
 
 @Component({
   selector: 'app-python-classification',
@@ -14,8 +16,11 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   data: FormData = new FormData();
   argumentsKeys = null;
   ifInitExecuted = false;
+  testDataFileName = '';
+  dataFileName = '';
+  resultOutput = false;
 
-  constructor(private service: ClassificationService) {
+  constructor(private service: ClassificationService, private resultService: ResultService) {
   }
 
   ngOnInit(): void {
@@ -24,12 +29,14 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   public onChangeDataFile(files: FileList) {
+    this.dataFileName = files[0].name;
     this.data.append('file', files[0]);
     this.service.sendDataFile(this.data);
     console.log(files);
   }
 
   public onChangeTestDataFile(files: FileList) {
+    this.testDataFileName = files[0].name;
     this.testData.append('file', files[0]);
     this.service.sendTestDataFile(this.testData);
     console.log(files);
@@ -38,10 +45,12 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   public ngOnChanges(...args: any[]) {
     if (this.ifInitExecuted) {
       this.ngOnInit();
+      this.resultOutput = false;
     }
   }
 
   public submitButtonClicked() {
+    // this.resultOutput = false;
     let form;
     const mapOfArgs = {};
     const degreeMap = {
@@ -49,8 +58,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
     };
     for (const i of this.argumentsKeys) {
       form = (document.getElementById(i) as HTMLInputElement);
-      if (form != null)
-      {
+      if (form != null) {
         form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
         mapOfArgs[i] = this.getValueFromForm(form);
       }
@@ -59,7 +67,12 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
     console.log(mapOfArgs);
     console.log(degreeMap);
     this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
-      mapOfArgs, degreeMap));
+      mapOfArgs, degreeMap)).subscribe(response => {
+      console.log(response);
+      const map = new TSMap<string, string>().fromJSON(response);
+      this.resultService.setMap(map);
+      this.resultOutput = true;
+    });
   }
 
   private getValueFromForm(form: HTMLInputElement) {

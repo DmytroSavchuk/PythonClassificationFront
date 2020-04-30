@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+
+.results-box{
+  font-family: 'Consolas', serif;
+  background-color: #f7fbfc;
+  border: 2px solid #5ec7f7;
+  border-radius: 4px;
+  list-style: none;
+  width: 100%;
+  padding-bottom: 2vh;
+  padding-top: 2vh;
+}
+
+.result-field{
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+
+.center-button-results{
+  text-align: center;
+}

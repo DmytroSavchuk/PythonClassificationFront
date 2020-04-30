@@ -29,7 +29,7 @@
               <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
               <input type="file" name="file" class="upload-input" (change)="onChangeTestDataFile($event.target.files)">
             </div>
-            <p class="file-text">Uploaded file: <i *ngIf="testData != null">{{testData.toString()}}</i></p>
+            <p class="file-text">Uploaded file: <i *ngIf="testData != null">{{testDataFileName}}</i></p>
           </div>
           <div class="file-two">
             <p class="file-text">Data</p>
@@ -37,7 +37,7 @@
               <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
               <input type="file" name="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
             </div>
-            <p class="file-text">Uploaded file: <i *ngIf="data != null">{{data.toString()}}</i></p>
+            <p class="file-text">Uploaded file: <i *ngIf="data != null">{{dataFileName}}</i></p>
           </div>
         </li>
       </ul>
@@ -45,7 +45,7 @@
         <button type="submit" mdbBtn color="primary" mdbWavesEffect (click)="submitButtonClicked()">Send</button>
       </div>
     </form>
-    <app-result class="page-right"></app-result>
+    <app-result class="page-right" *ngIf="resultOutput == true"></app-result>
   </div>
 </div>
 
