@@ -50,7 +50,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   public submitButtonClicked() {
-    // this.resultOutput = false;
+    this.resultOutput = false;
     let form;
     const mapOfArgs = {};
     const degreeMap = {
