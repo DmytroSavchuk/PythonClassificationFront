@@ -8,7 +8,6 @@ import {ClassificationService} from './services/classification.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'DataVisualisation';
   public methods: Method[] = [];
   public chosenMethod: Method;
 
@@ -25,7 +24,6 @@ export class AppComponent implements OnInit {
         i.methodArgs = new Map<string, string>(Object.entries(i.methodArgs));
       }
       this.methods = method;
-      console.log('_________________________________');
     });
   }
 

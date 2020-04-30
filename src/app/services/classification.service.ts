@@ -17,10 +17,6 @@ export class ClassificationService {
   constructor(private http: HttpClient) {
   }
 
-  public testData() {
-    return this.http.get(this.link + '/test-data');
-  }
-
   public getMethods() {
     return this.http.get<Method[]>(this.localLink + '/classification/methods');
   }
