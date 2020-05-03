@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Method} from '../models/Method';
 import {ClassificationRequest} from '../models/ClassificationRequest';
 import {Observable} from 'rxjs';
+import {FileResponse} from '../models/FileResponse';
 
 
 @Injectable({
@@ -28,14 +29,11 @@ export class ClassificationService {
   }
 
   public sendDataFile(file: FormData) {
-    this.http.post(this.dataLink, file)
-      .subscribe(response => console.log(response));
-
+    return this.http.post<FileResponse>(this.dataLink, file);
   }
 
   public sendTestDataFile(file: FormData) {
-    this.http.post(this.testDataLink, file)
-      .subscribe(response => console.log(response));
+    return this.http.post<FileResponse>(this.testDataLink, file);
   }
 
   public getResultsInFile(): Observable<any>{

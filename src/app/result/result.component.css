@@ -1,21 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
 
-.results-box{
+.results-box {
+  display: flex;
+  flex-flow: column wrap;
   font-family: 'Consolas', serif;
   background-color: #f7fbfc;
   border: 2px solid #5ec7f7;
   border-radius: 4px;
   list-style: none;
-  width: 100%;
-  padding-bottom: 2vh;
-  padding-top: 2vh;
 }
 
-.result-field{
+.result-field {
   padding-top: 1vh;
   padding-bottom: 1vh;
+  padding-right: 1vh;
+  font-size: 2vh;
 }
 
-.center-button-results{
+@media screen and (max-width: 800px) {
+  .result-field {
+    font-size: 15px;
+  }
+  .results-box{
+    width: 100%;
+  }
+  .center-button-results{
+    width: 100%;
+  }
+}
+
+.center-button-results {
   text-align: center;
 }

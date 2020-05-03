@@ -8,18 +8,20 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
-  width: 14%;
+  margin-top: 2vh;
+  min-width: 200px;
+  max-width: 14vw;
 }
 
-.btn-group{
-
+.dropdown-menu{
 }
 
 .logo {
-  display: block;
+  display: flex;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2%;
-  width: 20%;
+  margin-top: 2vh;
+  max-width: 300px;
+  width: 100%;
+  height: auto;
 }

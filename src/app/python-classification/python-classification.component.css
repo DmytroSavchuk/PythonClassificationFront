@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
 
 .classification {
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 5%;
+  margin-right: 5%;
   margin-top: 2%;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 40% 20% 40%;
-  grid-template-rows: auto;
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }
 
 .field-container {
@@ -18,24 +18,18 @@
   justify-content: center;
 }
 
-.page-left {
-  grid-column-start: 1;
-  grid-column-end: 2;
-}
-
 
 .field {
-  width: 90%;
+  margin-right: 10%;
   padding-left: 0;
+  padding-top: 1vh;
 }
-
 
 ul {
   background-color: #f7fbfc;
   border: 2px solid #5ec7f7;
   border-radius: 4px;
   list-style: none;
-  width: 100%;
 }
 
 ul:first-child {
@@ -51,6 +45,24 @@ ul:first-child {
 h1 {
   font-family: 'Bitter', serif;
   padding-bottom: 1vh;
+  font-size: 2.5vw;
+}
+
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size: 20px;
+  }
+  .flex-container{
+    flex-flow: column wrap;
+  }
+
+  .center-button{
+    width: 100%
+  }
+  .classification{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
 }
 
 li {
@@ -60,11 +72,6 @@ li {
 
 .center-button {
   text-align: center;
-}
-
-.page-right {
-  grid-column-start: 3;
-  grid-column-end: 4;
 }
 
 .dropzone {
@@ -88,14 +95,14 @@ li {
   opacity: 0;
 }
 
-.files-grid {
-  display: grid;
-  grid-template-columns: 50% 50%;
+.files-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
 }
 
 .file-one {
-  grid-column-start: 1;
-  grid-column-end: 2;
+  padding-right: 0.5vw;
 }
 
 .file-text {
@@ -105,12 +112,15 @@ li {
 }
 
 .file-two {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  margin-left: 30%;
+  margin-right: 2vw;
 }
 
 .md-form {
   margin-top: 1%;
   margin-bottom: 1%;
+}
+
+.dropzone:hover{
+  transition: ease 2s;
+  border: 1px dashed black;
 }

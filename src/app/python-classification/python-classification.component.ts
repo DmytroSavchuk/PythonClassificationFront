@@ -4,6 +4,7 @@ import {Method} from '../models/Method';
 import {ClassificationRequest} from '../models/ClassificationRequest';
 import {TSMap} from 'typescript-map';
 import {ResultService} from '../services/result.service';
+import {FileResponse} from '../models/FileResponse';
 
 @Component({
   selector: 'app-python-classification',
@@ -19,6 +20,8 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   testDataFileName = '';
   dataFileName = '';
   resultOutput = false;
+  testDataFileStatus: FileResponse;
+  trainDataFileStatus: FileResponse;
 
   constructor(private service: ClassificationService, private resultService: ResultService) {
   }
@@ -31,15 +34,17 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   public onChangeDataFile(files: FileList) {
     this.dataFileName = files[0].name;
     this.data.append('file', files[0]);
-    this.service.sendDataFile(this.data);
-    console.log(files);
+    this.service.sendDataFile(this.data).subscribe(res => {
+      this.trainDataFileStatus = res;
+    });
   }
 
   public onChangeTestDataFile(files: FileList) {
     this.testDataFileName = files[0].name;
     this.testData.append('file', files[0]);
-    this.service.sendTestDataFile(this.testData);
-    console.log(files);
+    this.service.sendTestDataFile(this.testData).subscribe(res => {
+      this.testDataFileStatus = res;
+    });
   }
 
   public ngOnChanges(...args: any[]) {
