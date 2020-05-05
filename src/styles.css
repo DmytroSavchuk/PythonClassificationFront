@@ -7,8 +7,13 @@ footer{
 .page{
   position: relative;
   min-height: 100vh;
+  min-width: 100vh;
 }
 
 .content-wrap {
   padding-bottom: 10rem;    /* Footer height */
+}
+
+.copy_right{
+  margin-right: 1%;
 }

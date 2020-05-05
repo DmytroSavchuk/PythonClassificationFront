@@ -1,9 +1,7 @@
-import {Argument} from './Argument';
-
-export class Method{
+export class Method {
   constructor(
     public name: string,
-    public argumentsOfMethod: Argument[] = [],
+    public methodArgs: Map<string, string> = new Map<string, string>(),
   ) {
   }
 }

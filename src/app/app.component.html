@@ -1,9 +1,18 @@
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-primary" [containerInside]="false">
-  <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand nav-text" href="#">Data Visualisation</a></mdb-navbar-brand>
-</mdb-navbar>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+  <a class="navbar-brand" href="#">BestClassification</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+<!--/.Navbar-->
 
-<div class="btn-group basic-dropdown" mdbDropdown>
+<div class="logo">
+  <img src="/assets/BestClassification.png" alt="BestClassification.png">
+</div>
+
+<div class="btn-group basic-dropdown" mdbDropdown style="text-align: center">
   <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
           mdbWavesEffect>
     Choose Method
@@ -14,7 +23,10 @@
        (click)="setChosenMethod(method)">{{method.name}}</a>
   </div>
 </div>
-<app-python-classification *ngIf="chosenMethod != null" [method]="chosenMethod"></app-python-classification>
+<div class="python_component">
+  <app-python-classification *ngIf="chosenMethod != null" [method]="chosenMethod"></app-python-classification>
+</div>
+
 
 <!--/.Navbar-->
 

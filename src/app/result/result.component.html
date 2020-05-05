@@ -1,0 +1,10 @@
+<div *ngIf="results != null">
+  <ul class="results-box">
+    <li class="result-field" *ngFor="let key of results.keys()">{{key}}: {{results.get(key)}}</li>
+  </ul>
+  <div class="center-button-results">
+    <a [download]="'classificationResults'" [href]="link">
+      <button type="button" mdbBtn color="primary" mdbWavesEffect>Get Results</button>
+    </a>
+  </div>
+</div>

@@ -1,27 +1,60 @@
+<!--suppress ALL -->
 <div class="classification">
-  <h1>{{method.name}}</h1>
-  <div>
-    <ul class="field-container">
-      <div *ngFor="let argument of method.argumentsOfMethod" class="field">
-        <li *ngIf="argument.type === 'string'">
-          <div class="md-form">
-            <input mdbInput type="text" id="{{argument.name}}" class="form-control">
-            <label for="{{argument.name}}" class="">{{argument.name}}</label>
+  <div class="flex-container">
+    <div>
+      <h1>{{method.name}}</h1>
+      <form method="post" #myForm="ngForm" class="page-left">
+        <ul class="field-container">
+          <div *ngFor="let argument of argumentsKeys" class="field">
+            <li *ngIf="method.methodArgs.get(argument) === 'STRING'">
+              <div class="md-form">
+                <input mdbInput type="text" id="{{argument}}" class="form-control" required name="{{argument}}">
+                <label for="{{argument}}" class="">{{argument}}</label>
+              </div>
+            </li>
+            <li *ngIf="method.methodArgs.get(argument)  === 'NUMBER'">
+              <div class="md-form">
+                <input mdbInput type="number" id="{{argument}}" class="form-control" required
+                       name="{{argument}}">
+                <label for="{{argument}}" class="">{{argument}}</label>
+              </div>
+            </li>
+            <li *ngIf="method.methodArgs.get(argument)  === 'BOOLEAN'" class="boolean">
+              <mdb-checkbox [default]="true" name="{{argument}}" id="{{argument}}">{{argument}}</mdb-checkbox>
+            </li>
           </div>
-        </li>
-        <li *ngIf="argument.type === 'number'">
-          <div class="md-form">
-            <input mdbInput type="number" id="{{argument.name + 'number'}}" class="form-control">
-            <label for="{{argument.name + 'number'}}" class="">{{argument.name}}</label>
-          </div>
-        </li>
-        <li *ngIf="argument.type === 'boolean'" class="boolean">
-          <mdb-checkbox [default]="true">{{argument.name}}</mdb-checkbox>
-        </li>
-      </div>
-    </ul>
+          <li class="files-flex">
+            <div class="file-one">
+              <p class="file-text">Test data</p>
+              <div class="dropzone">
+                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+                <input type="file" name="file" class="upload-input"
+                       (change)="onChangeTestDataFile($event.target.files)">
+              </div>
+              <p class="file-text">Uploaded file: <i *ngIf="this.testDataFileStatus != null">{{testDataFileName}}</i>
+              </p>
+            </div>
+            <div class="file-two">
+              <p class="file-text">Data</p>
+              <div class="dropzone">
+                <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
+                <input type="file" name="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
+              </div>
+              <p class="file-text">Uploaded file: <i *ngIf="trainDataFileStatus != null">{{dataFileName}}</i></p>
+            </div>
+          </li>
+        </ul>
+        <div class="center-button">
+          <button type="submit" mdbBtn color="primary" mdbWavesEffect (click)="submitButtonClicked()">Send</button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="resultOutput == true">
+      <h1>Results:</h1>
+      <app-result></app-result>
+    </div>
   </div>
 </div>
-<!--  <p *ngFor="let i of numbers">{{i}}</p>-->
+
 
 
