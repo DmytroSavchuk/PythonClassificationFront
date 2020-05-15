@@ -30,6 +30,7 @@ ul {
   border: 2px solid #5ec7f7;
   border-radius: 4px;
   list-style: none;
+  min-width: 50vh;
 }
 
 ul:first-child {

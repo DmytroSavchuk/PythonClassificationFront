@@ -7,7 +7,7 @@ footer{
 .page{
   position: relative;
   min-height: 100vh;
-  min-width: 100vh;
+  /*min-width: 100vh;*/
 }
 
 .content-wrap {

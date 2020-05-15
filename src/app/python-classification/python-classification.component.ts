@@ -5,6 +5,7 @@ import {ClassificationRequest} from '../models/ClassificationRequest';
 import {TSMap} from 'typescript-map';
 import {ResultService} from '../services/result.service';
 import {FileResponse} from '../models/FileResponse';
+import {ArgumentProperties} from '../models/ArgumentProperties';
 
 @Component({
   selector: 'app-python-classification',
@@ -27,7 +28,9 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log(this.method);
     this.argumentsKeys = Array.from(this.method.methodArgs.keys());
+    console.log(this.argumentsKeys);
     this.ifInitExecuted = true;
   }
 
@@ -72,7 +75,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
     console.log(mapOfArgs);
     console.log(degreeMap);
     this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
-      mapOfArgs, degreeMap)).subscribe(response => {
+      mapOfArgs, degreeMap, true)).subscribe(response => {
       console.log(response);
       const map = new TSMap<string, string>().fromJSON(response);
       this.resultService.setMap(map);

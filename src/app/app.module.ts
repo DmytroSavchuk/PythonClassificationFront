@@ -8,6 +8,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import {ResultComponent} from './result/result.component';
 import {Interceptor} from './services/Interceptor';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {Interceptor} from './services/Interceptor';
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,
+    NgbModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

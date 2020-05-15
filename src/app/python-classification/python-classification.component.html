@@ -2,25 +2,39 @@
 <div class="classification">
   <div class="flex-container">
     <div>
-      <h1>{{method.name}}</h1>
+      <h1>{{method.label}}</h1>
       <form method="post" #myForm="ngForm" class="page-left">
         <ul class="field-container">
           <div *ngFor="let argument of argumentsKeys" class="field">
-            <li *ngIf="method.methodArgs.get(argument) === 'STRING'">
+            <li *ngIf="method.methodArgs.get(argument).type === 'STRING'">
               <div class="md-form">
-                <input mdbInput type="text" id="{{argument}}" class="form-control" required name="{{argument}}">
+                <input mdbInput type="text" id="{{argument}}" class="form-control" required
+                       value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
                 <label for="{{argument}}" class="">{{argument}}</label>
               </div>
             </li>
-            <li *ngIf="method.methodArgs.get(argument)  === 'NUMBER'">
+            <li *ngIf="method.methodArgs.get(argument).type === 'NUMBER'">
               <div class="md-form">
                 <input mdbInput type="number" id="{{argument}}" class="form-control" required
-                       name="{{argument}}">
+                       value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
                 <label for="{{argument}}" class="">{{argument}}</label>
               </div>
             </li>
-            <li *ngIf="method.methodArgs.get(argument)  === 'BOOLEAN'" class="boolean">
-              <mdb-checkbox [default]="true" name="{{argument}}" id="{{argument}}">{{argument}}</mdb-checkbox>
+            <li *ngIf="method.methodArgs.get(argument).type === 'BOOLEAN'" class="boolean">
+              <mdb-checkbox [default]="true" id="{{argument}}" [checked]="method.methodArgs.get(argument).defaultValue"
+                            name="{{argument}}">{{argument}}</mdb-checkbox>
+            </li>
+            <li *ngIf="method.methodArgs.get(argument).type === 'STRING_ENUM'">
+              <div class="btn-group" mdbDropdown>
+                <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
+                        mdbWavesEffect>
+                  {{argument}}
+                </button>
+                <div class="dropdown-menu dropdown-primary">
+                  <a class="dropdown-item" *ngFor="let possibleValue of method.methodArgs.get(argument).possibleValues"
+                     href="#">{{possibleValue}}</a>
+                </div>
+              </div>
             </li>
           </div>
           <li class="files-flex">
