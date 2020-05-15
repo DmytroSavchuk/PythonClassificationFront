@@ -30,6 +30,7 @@ ul {
   border: 2px solid #5ec7f7;
   border-radius: 4px;
   list-style: none;
+  min-width: 50vh;
 }
 
 ul:first-child {
@@ -62,6 +63,25 @@ h1 {
   .classification{
     margin-left: 5%;
     margin-right: 5%;
+  }
+}
+
+.custom-select{
+  margin-top: 6vh;
+  margin-bottom: 2vh;
+}
+
+.file-text{
+  padding-top: 2vh;
+}
+
+ul:first-child{
+  padding-top: 2vh;
+}
+
+@media screen and (max-height: 600px) {
+  .custom-select{
+    margin-top: 9vh;
   }
 }
 

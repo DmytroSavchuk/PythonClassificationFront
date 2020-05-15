@@ -3,7 +3,8 @@ export class ClassificationRequest {
     public polynomialName: string,
     public classifierName: string,
     public classifierParamsDictionary: object,
-    public polynomialParamsDictionary: object
+    public polynomialParamsDictionary: object,
+    public isPolynomial,
   ) {
   }
 
@@ -12,7 +13,8 @@ export class ClassificationRequest {
       polynomial_name: this.polynomialName,
       classifier_name: this.classifierName,
       classifier_params_dictionary: this.classifierParamsDictionary,
-      polynomial_params_dictionary: this.polynomialParamsDictionary
+      polynomial_params_dictionary: this.polynomialParamsDictionary,
+      is_polynomial_used: this.isPolynomial
     };
   }
 }

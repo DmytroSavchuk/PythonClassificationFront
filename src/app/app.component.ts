@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Method} from './models/Method';
 import {ClassificationService} from './services/classification.service';
+import {ArgumentProperties} from './models/ArgumentProperties';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
       //   this.methods.push(new Method(i.name, map));
       // }
       for (const i of method) {
-        i.methodArgs = new Map<string, string>(Object.entries(i.methodArgs));
+        i.methodArgs = new Map<string, ArgumentProperties>(Object.entries(i.methodArgs));
       }
       this.methods = method;
     });

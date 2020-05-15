@@ -5,6 +5,7 @@ import {ClassificationRequest} from '../models/ClassificationRequest';
 import {TSMap} from 'typescript-map';
 import {ResultService} from '../services/result.service';
 import {FileResponse} from '../models/FileResponse';
+import {ArgumentProperties} from '../models/ArgumentProperties';
 
 @Component({
   selector: 'app-python-classification',
@@ -27,7 +28,9 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+    console.log(this.method);
     this.argumentsKeys = Array.from(this.method.methodArgs.keys());
+    console.log(this.argumentsKeys);
     this.ifInitExecuted = true;
   }
 
@@ -67,12 +70,11 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
         mapOfArgs[i] = this.getValueFromForm(form);
       }
-
     }
     console.log(mapOfArgs);
     console.log(degreeMap);
     this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
-      mapOfArgs, degreeMap)).subscribe(response => {
+      mapOfArgs, degreeMap, true)).subscribe(response => {
       console.log(response);
       const map = new TSMap<string, string>().fromJSON(response);
       this.resultService.setMap(map);
@@ -82,8 +84,16 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
 
   private getValueFromForm(form: HTMLInputElement) {
     switch (form.type) {
-      case 'number_list':
-        return null;
+      case 'text':
+        if (form.value === '') {
+          return null;
+        }
+        const array = form.value.split(',');
+        const newArray = [];
+        for (const i of array) {
+          newArray.push(Number(i));
+        }
+        return newArray;
       case 'checkbox':
         return form.checked;
       case 'number':
@@ -92,6 +102,11 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         }
         return Number(form.value);
       case 'string':
+        if (form.value === '') {
+          return null;
+        }
+        return form.value;
+      case 'select-one':
         if (form.value === '') {
           return null;
         }
