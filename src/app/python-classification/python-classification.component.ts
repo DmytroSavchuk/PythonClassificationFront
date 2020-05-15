@@ -70,7 +70,6 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
         mapOfArgs[i] = this.getValueFromForm(form);
       }
-
     }
     console.log(mapOfArgs);
     console.log(degreeMap);
@@ -85,8 +84,16 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
 
   private getValueFromForm(form: HTMLInputElement) {
     switch (form.type) {
-      case 'number_list':
-        return null;
+      case 'text':
+        if (form.value === '') {
+          return null;
+        }
+        const array = form.value.split(',');
+        const newArray = [];
+        for (const i of array) {
+          newArray.push(Number(i));
+        }
+        return newArray;
       case 'checkbox':
         return form.checked;
       case 'number':
@@ -95,6 +102,11 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         }
         return Number(form.value);
       case 'string':
+        if (form.value === '') {
+          return null;
+        }
+        return form.value;
+      case 'select-one':
         if (form.value === '') {
           return null;
         }
