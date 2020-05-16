@@ -9,12 +9,14 @@ import {FormsModule} from '@angular/forms';
 import {ResultComponent} from './result/result.component';
 import {Interceptor} from './services/Interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { GraphicsComponent } from './graphics/graphics.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PythonClassificationComponent,
-    ResultComponent
+    ResultComponent,
+    GraphicsComponent
   ],
   imports: [
     BrowserModule,

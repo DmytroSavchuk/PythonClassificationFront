@@ -1,0 +1,17 @@
+<div *ngIf="withImages == true">
+  <div class="graphics">
+    <select class="browser-default custom-select" id="graphics" (change)="selectChangeHandler($event)">
+      <option *ngFor="let typeG of graphicsTypes">{{typeG}}</option>
+    </select>
+  </div>
+  <div *ngIf="imageToShow != null" class="graphics-img">
+    <img [src]="imageToShow"
+         alt="Place image title"
+         *ngIf="!isImageLoading">
+  </div>
+  <div class="center-button-results">
+    <a [download]="'classificationResults'" [href]="link">
+      <button type="button" mdbBtn color="primary" mdbWavesEffect>Get Results</button>
+    </a>
+  </div>
+</div>

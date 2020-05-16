@@ -40,4 +40,12 @@ export class ClassificationService {
   public getResultsInFile(): Observable<any>{
     return this.http.post((this.link + '/classification-data'), {});
   }
+
+  public classifyWithAllMethods(){
+    return this.http.get(this.link + '/compare-classification');
+  }
+
+  public getGraphics(url: string){
+    return this.http.get(this.link + url, { responseType: 'blob' });
+  }
 }

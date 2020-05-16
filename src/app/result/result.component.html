@@ -1,10 +1,30 @@
 <div *ngIf="results != null">
+  <h1>Results:</h1>
   <ul class="results-box">
-    <li class="result-field" *ngFor="let key of results.keys()">{{key}}: {{results.get(key)}}</li>
+    <li class="result-field" *ngFor="let key of results.keys(); let i = index">{{resultParameters[i]}}: {{results.get(key)}}</li>
   </ul>
   <div class="center-button-results">
     <a [download]="'classificationResults'" [href]="link">
       <button type="button" mdbBtn color="primary" mdbWavesEffect>Get Results</button>
     </a>
   </div>
+</div>
+<div *ngIf="allMethodResults != null" style="flex-flow: column wrap">
+  <h1>Results:</h1>
+  <table class="table-responsive table-bordered">
+    <thead class="blue white-text">
+    <tr>
+      <th scope="col" class="first-cell column">#</th>
+      <th scope="col" class="column"
+          *ngFor="let col of resultParameters">{{col}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let name of allMethodResults.keys()">
+      <th scope="row">{{name}}</th>
+      <td
+        *ngFor="let value of allMethodResults.get(name).keys()">{{toNumber(allMethodResults.get(name).get(value)) | number:'1.0-5'}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

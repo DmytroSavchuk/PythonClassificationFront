@@ -11,16 +11,14 @@ import {ArgumentProperties} from './models/ArgumentProperties';
 export class AppComponent implements OnInit {
   public methods: Method[] = [];
   public chosenMethod: Method;
+  public separatedMethod: Method;
 
   constructor(private service: ClassificationService) {
+    this.separatedMethod = new Method('Classify With All Methods', 'Classify With All Methods', null);
   }
 
   private initializeMethods() {
     this.service.getMethods().subscribe(method => {
-      // for (const i of method){
-      //   const map = new Map<string, string>(Object.entries(i.methodArgs));
-      //   this.methods.push(new Method(i.name, map));
-      // }
       for (const i of method) {
         i.methodArgs = new Map<string, ArgumentProperties>(Object.entries(i.methodArgs));
       }

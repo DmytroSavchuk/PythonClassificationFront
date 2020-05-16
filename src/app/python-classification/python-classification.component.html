@@ -5,35 +5,47 @@
       <h1>{{method.label}}</h1>
       <form method="post" #myForm="ngForm" class="page-left">
         <ul class="field-container">
-          <div *ngFor="let argument of argumentsKeys" class="field">
-            <li *ngIf="method.methodArgs.get(argument).type === 'STRING' ||
+          <div *ngIf="method.methodArgs != null">
+            <li class="field">
+              <mdb-checkbox [default]="true" [id]="'UsePolynomial'" #pol>UsePolynomial</mdb-checkbox>
+            </li>
+            <li *ngIf="pol.checked" class="field">
+              <div class="md-form">
+                <input mdbInput type="number" id="PolynomialPower" class="form-control" required name="PolymialName">
+                <label for="PolynomialPower" class="">Polynomial Power</label>
+              </div>
+            </li>
+            <div *ngFor="let argument of argumentsKeys" class="field">
+              <li *ngIf="method.methodArgs.get(argument).type === 'STRING' ||
              method.methodArgs.get(argument).type === 'NUMBER_LIST'">
-              <div class="md-form">
-                <input mdbInput type="text" id="{{argument}}" class="form-control" required
-                       value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
-                <label for="{{argument}}" class="">{{argument}}</label>
-              </div>
-            </li>
-            <li *ngIf="method.methodArgs.get(argument).type === 'NUMBER'">
-              <div class="md-form">
-                <input mdbInput type="number" id="{{argument}}" class="form-control" required
-                       value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
-                <label for="{{argument}}" class="">{{argument}}</label>
-              </div>
-            </li>
-            <li *ngIf="method.methodArgs.get(argument).type === 'BOOLEAN'" class="boolean">
-              <mdb-checkbox [default]="true" id="{{argument}}" [checked]="method.methodArgs.get(argument).defaultValue"
-                            name="{{argument}}">{{argument}}</mdb-checkbox>
-            </li>
-            <li *ngIf="method.methodArgs.get(argument).type === 'STRING_ENUM'">
-              <div class="md-form">
-                <label class="">{{argument}}:</label>
-                <select class="browser-default custom-select" id = "{{argument}}">
-                  <option
-                    *ngFor="let possibleValue of method.methodArgs.get(argument).possibleValues">{{possibleValue}}</option>
-                </select>
-              </div>
-            </li>
+                <div class="md-form">
+                  <input mdbInput type="text" id="{{argument}}" class="form-control" required
+                         value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
+                  <label for="{{argument}}" class="">{{argument}}</label>
+                </div>
+              </li>
+              <li *ngIf="method.methodArgs.get(argument).type === 'NUMBER'">
+                <div class="md-form">
+                  <input mdbInput type="number" id="{{argument}}" class="form-control" required
+                         value="{{method.methodArgs.get(argument).defaultValue}}" name="{{argument}}">
+                  <label for="{{argument}}" class="">{{argument}}</label>
+                </div>
+              </li>
+              <li *ngIf="method.methodArgs.get(argument).type === 'BOOLEAN'" class="boolean">
+                <mdb-checkbox [default]="true" id="{{argument}}"
+                              [checked]="method.methodArgs.get(argument).defaultValue"
+                              name="{{argument}}">{{argument}}</mdb-checkbox>
+              </li>
+              <li *ngIf="method.methodArgs.get(argument).type === 'STRING_ENUM'">
+                <div class="md-form">
+                  <label class="">{{argument}}:</label>
+                  <select class="browser-default custom-select" id="{{argument}}">
+                    <option
+                      *ngFor="let possibleValue of method.methodArgs.get(argument).possibleValues">{{possibleValue}}</option>
+                  </select>
+                </div>
+              </li>
+            </div>
           </div>
           <li class="files-flex">
             <div class="file-one">
@@ -41,18 +53,18 @@
               <div class="dropzone">
                 <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
                 <input type="file" name="file" class="upload-input"
-                       (change)="onChangeTestDataFile($event.target.files)">
+                       (change)="onChangeDataFile($event.target.files)">
               </div>
-              <p class="file-text">Uploaded file: <i *ngIf="this.testDataFileStatus != null">{{testDataFileName}}</i>
+              <p class="file-text">Uploaded file: <i *ngIf="this.trainDataFileStatus != null">{{dataFileName}}</i>
               </p>
             </div>
             <div class="file-two">
               <p class="file-text">Test Data</p>
               <div class="dropzone">
                 <img src="http://100dayscss.com/codepen/upload.svg" class="upload-icon">
-                <input type="file" name="file" class="upload-input" (change)="onChangeDataFile($event.target.files)">
+                <input type="file" name="file" class="upload-input" (change)="onChangeTestDataFile($event.target.files)">
               </div>
-              <p class="file-text">Uploaded file: <i *ngIf="trainDataFileStatus != null">{{dataFileName}}</i></p>
+              <p class="file-text">Uploaded file: <i *ngIf="testDataFileStatus != null">{{testDataFileName}}</i></p>
             </div>
           </li>
         </ul>
@@ -62,9 +74,11 @@
       </form>
     </div>
     <div *ngIf="resultOutput == true">
-      <h1>Results:</h1>
       <app-result></app-result>
     </div>
+  </div>
+  <div *ngIf="withImages == true">
+    <app-graphics></app-graphics>
   </div>
 </div>
 

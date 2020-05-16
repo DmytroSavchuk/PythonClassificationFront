@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
 
 .classification {
-  margin-left: 5%;
-  margin-right: 5%;
+  /*margin-left: 2%;*/
+  /*margin-right: 2%;*/
   margin-top: 2%;
 }
 
@@ -53,34 +53,36 @@ h1 {
   h1 {
     font-size: 20px;
   }
-  .flex-container{
+
+  .flex-container {
     flex-flow: column wrap;
   }
 
-  .center-button{
+  .center-button {
     width: 100%
   }
-  .classification{
+
+  .classification {
     margin-left: 5%;
     margin-right: 5%;
   }
 }
 
-.custom-select{
+.custom-select {
   margin-top: 6vh;
   margin-bottom: 2vh;
 }
 
-.file-text{
+.file-text {
   padding-top: 2vh;
 }
 
-ul:first-child{
+ul:first-child {
   padding-top: 2vh;
 }
 
 @media screen and (max-height: 600px) {
-  .custom-select{
+  .custom-select {
     margin-top: 9vh;
   }
 }
@@ -140,7 +142,11 @@ li {
   margin-bottom: 1%;
 }
 
-.dropzone:hover{
+.dropzone:hover {
   transition: ease 2s;
   border: 1px dashed black;
+}
+
+.pol-field {
+  margin-top: 2vh;
 }
