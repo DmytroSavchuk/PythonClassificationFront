@@ -25,6 +25,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   testDataFileStatus: FileResponse;
   trainDataFileStatus: FileResponse;
   withImages: boolean;
+  pasxalka: 'I love Izumin';
 
   constructor(private service: ClassificationService, private resultService: ResultService) {
   }
