@@ -11,7 +11,7 @@
             </li>
             <li *ngIf="pol.checked" class="field">
               <div class="md-form">
-                <input mdbInput type="number" id="PolynomialPower" class="form-control" required name="PolymialName">
+                <input mdbInput type="number" id="PolynomialPower" value="2" class="form-control" required name="PolymialName">
                 <label for="PolynomialPower" class="">Polynomial Power</label>
               </div>
             </li>
@@ -40,6 +40,7 @@
                 <div class="md-form">
                   <label class="">{{argument}}:</label>
                   <select class="browser-default custom-select" id="{{argument}}">
+                    <option selected>{{method.methodArgs.get(argument).defaultValue}}</option>
                     <option
                       *ngFor="let possibleValue of method.methodArgs.get(argument).possibleValues">{{possibleValue}}</option>
                   </select>

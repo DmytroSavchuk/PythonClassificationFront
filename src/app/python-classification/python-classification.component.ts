@@ -31,8 +31,18 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.withImages = false;
+    console.log(this.method.methodArgs);
     if (this.method.label !== 'Classify With All Methods') {
       this.argumentsKeys = Array.from(this.method.methodArgs.keys());
+      const arr = Array.from(this.method.methodArgs.values());
+      for (const i of this.method.methodArgs.values()) {
+        if (i.type === 'STRING_ENUM') {
+          const index = i.possibleValues.indexOf(i.defaultValue);
+          if (index > -1) {
+            i.possibleValues.splice(index, 1);
+          }
+        }
+      }
     }
     this.ifInitExecuted = true;
   }
