@@ -39,23 +39,19 @@ export class GraphicsComponent implements OnInit {
 
   getImageFromService(url: string) {
     this.isImageLoading = true;
-    console.log('Here');
     this.classificationService.getGraphics(url).subscribe(data => {
       this.createImageFromBlob(data);
       this.isImageLoading = false;
     }, error => {
       this.isImageLoading = false;
-      console.log(error);
     });
   }
 
   selectChangeHandler(event: any) {
     if (this.graphicsTypes.includes('Choose graphic type')) {
-      console.log('Best friends');
       this.graphicsTypes.shift();
     }
     const value = event.target.value;
-    console.log(value);
     if (value.toLowerCase() === 'train time') {
       this.getImageFromService('/fit-time-plot');
     } else if (value.toLowerCase() === 'test accuracy') {

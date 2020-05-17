@@ -30,11 +30,9 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    console.log(this.method);
     this.withImages = false;
     if (this.method.label !== 'Classify With All Methods') {
       this.argumentsKeys = Array.from(this.method.methodArgs.keys());
-      console.log(this.argumentsKeys);
     }
     this.ifInitExecuted = true;
   }
@@ -56,11 +54,9 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
   }
 
   public ngOnChanges(changes: SimpleChanges) {
-    // if (this.ifInitExecuted) {
     this.ngOnInit();
     this.resultOutput = false;
     this.method = changes.method.currentValue;
-    // }
   }
 
 
@@ -84,15 +80,11 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
       for (const i of this.argumentsKeys) {
         form = (document.getElementById(i) as HTMLInputElement);
         if (form != null) {
-          form.type === 'checkbox' ? console.log(form.checked) : console.log(form.value);
           mapOfArgs[i] = this.getValueFromForm(form);
         }
       }
-      console.log(mapOfArgs);
-      console.log(degreeMap);
       this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
         mapOfArgs, degreeMap, pol.checked)).subscribe(response => {
-        console.log(response);
         const map = new TSMap<string, string>().fromJSON(response);
         this.resultService.setMap(map);
         this.resultService.setIsWithImages(false);
@@ -107,7 +99,6 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         for (const key of map.keys()) {
           mapRes.set(key, new TSMap<string, string>().fromJSON(map.get(key)));
         }
-        console.log(mapRes);
         this.resultService.setAllMethodsResults(mapRes);
         this.resultService.setIsWithImages(true);
         this.withImages = true;

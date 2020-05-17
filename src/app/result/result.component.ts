@@ -28,12 +28,10 @@ export class ResultComponent implements OnInit {
     this.withImages = this.resultService.getIsWithImages();
     this.methodName = this.resultService.getMethodName();
     this.link = `https://python-classification-back.herokuapp.com/classification-data?token=${this.tokenService.generateTokenIfNotExists()}&method_name=${this.methodName}`;
-    console.log(this.methodName);
     if (this.withImages) {
       this.allMethodResults = this.resultService.getMethodResults();
     } else {
       this.results = this.resultService.getMap();
-      console.log(this.results);
       this.keys = this.results.keys();
       this.values = this.results.values();
     }

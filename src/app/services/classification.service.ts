@@ -25,7 +25,6 @@ export class ClassificationService {
   }
 
   public classify(classificationRequest: ClassificationRequest) {
-    console.log(classificationRequest);
     return this.http.post(this.classificationLink, classificationRequest.getJSON());
   }
 
