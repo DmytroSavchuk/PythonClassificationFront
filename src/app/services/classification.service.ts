@@ -11,7 +11,7 @@ import {FileResponse} from '../models/FileResponse';
 })
 export class ClassificationService {
 
-  private link = 'https://python-classification-back.herokuapp.com';
+  private link = 'https://ml-based-classification-back.herokuapp.com';
   private localLink = 'http://127.0.0.1:5000';
   private classificationLink = `${this.link}/classification`;
   private dataLink = `${this.link}/train-data`;
