@@ -12,7 +12,7 @@ export class Interceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>, next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(this.addTokenToRequest(request)).pipe(timeout(30000));
+    return next.handle(this.addTokenToRequest(request)).pipe(timeout(300000));
   }
 
   private addTokenToRequest(request: HttpRequest<any>) {
