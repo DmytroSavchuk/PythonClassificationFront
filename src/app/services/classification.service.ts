@@ -36,15 +36,15 @@ export class ClassificationService {
     return this.http.post<FileResponse>(this.testDataLink, file);
   }
 
-  public getResultsInFile(): Observable<any>{
+  public getResultsInFile(): Observable<any> {
     return this.http.post((this.link + '/classification-data'), {});
   }
 
-  public classifyWithAllMethods(){
+  public classifyWithAllMethods() {
     return this.http.get(this.link + '/compare-classification');
   }
 
-  public getGraphics(url: string){
-    return this.http.get(this.link + url, { responseType: 'blob' });
+  public getGraphics(url: string) {
+    return this.http.get(this.link + url, {responseType: 'blob'});
   }
 }

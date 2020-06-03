@@ -6,15 +6,6 @@
       <form method="post" #myForm="ngForm" class="page-left">
         <ul class="field-container">
           <div *ngIf="method.methodArgs != null">
-            <li class="field">
-              <mdb-checkbox [default]="true" [id]="'UsePolynomial'" #pol>NonLinearExtension</mdb-checkbox>
-            </li>
-            <li *ngIf="pol.checked" class="field">
-              <div class="md-form">
-                <input mdbInput type="number" id="PolynomialPower" value="2" class="form-control" required name="PolymialName">
-                <label for="PolynomialPower" class="">Polynomial Power</label>
-              </div>
-            </li>
             <div *ngFor="let argument of argumentsKeys" class="field">
               <li *ngIf="method.methodArgs.get(argument).type === 'STRING' ||
              method.methodArgs.get(argument).type === 'NUMBER_LIST'">

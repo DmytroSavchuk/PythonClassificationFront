@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {TokenService} from './TokenService';
+import {timeout} from 'rxjs/operators';
 
 @Injectable()
 export class Interceptor implements HttpInterceptor {
@@ -11,7 +12,7 @@ export class Interceptor implements HttpInterceptor {
   intercept(
     request: HttpRequest<any>, next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    return next.handle(this.addTokenToRequest(request));
+    return next.handle(this.addTokenToRequest(request)).pipe(timeout(30000));
   }
 
   private addTokenToRequest(request: HttpRequest<any>) {
