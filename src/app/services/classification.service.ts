@@ -12,7 +12,7 @@ import {timeout} from 'rxjs/operators';
 })
 export class ClassificationService {
 
-  private link = 'http://127.0.0.1:5000';
+  private link = 'https://ml-based-classification-back.herokuapp.com';
   private localLink = 'http://127.0.0.1:5000';
   private classificationLink = `${this.link}/classification`;
   private dataLink = `${this.link}/train-data`;
