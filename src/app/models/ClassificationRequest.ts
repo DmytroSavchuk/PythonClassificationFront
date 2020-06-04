@@ -4,7 +4,6 @@ export class ClassificationRequest {
     public classifierName: string,
     public classifierParamsDictionary: object,
     public polynomialParamsDictionary: object,
-    public isPolynomial,
   ) {
   }
 
@@ -14,7 +13,6 @@ export class ClassificationRequest {
       classifier_name: this.classifierName,
       classifier_params_dictionary: this.classifierParamsDictionary,
       polynomial_params_dictionary: this.polynomialParamsDictionary,
-      is_polynomial_used: this.isPolynomial
     };
   }
 }

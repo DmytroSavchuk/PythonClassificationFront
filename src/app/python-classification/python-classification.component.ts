@@ -79,15 +79,6 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
       degree: 2
     };
     if (this.method.label !== 'Classify With All Methods') {
-      const pol = document.getElementById('UsePolynomial') as HTMLInputElement;
-      if (pol.checked) {
-        const pow = document.getElementById('PolynomialPower') as HTMLInputElement;
-        if (Number(pow.value) === 0) {
-          degreeMap.degree = 2;
-        } else {
-          degreeMap.degree = Number(pow.value);
-        }
-      }
       for (const i of this.argumentsKeys) {
         form = (document.getElementById(i) as HTMLInputElement);
         if (form != null) {
@@ -95,7 +86,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         }
       }
       this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
-        mapOfArgs, degreeMap, pol.checked)).subscribe(response => {
+        mapOfArgs, degreeMap)).subscribe(response => {
         const map = new TSMap<string, string>().fromJSON(response);
         this.resultService.setMap(map);
         this.resultService.setIsWithImages(false);

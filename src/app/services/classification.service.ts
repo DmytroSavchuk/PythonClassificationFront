@@ -4,6 +4,7 @@ import {Method} from '../models/Method';
 import {ClassificationRequest} from '../models/ClassificationRequest';
 import {Observable} from 'rxjs';
 import {FileResponse} from '../models/FileResponse';
+import {timeout} from 'rxjs/operators';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import {FileResponse} from '../models/FileResponse';
 })
 export class ClassificationService {
 
-  private link = 'https://ml-based-classification-back.herokuapp.com';
+  private link = 'http://127.0.0.1:5000';
   private localLink = 'http://127.0.0.1:5000';
   private classificationLink = `${this.link}/classification`;
   private dataLink = `${this.link}/train-data`;
@@ -41,7 +42,7 @@ export class ClassificationService {
   }
 
   public classifyWithAllMethods() {
-    return this.http.get(this.link + '/compare-classification');
+    return this.http.get(this.link + '/compare-classification').pipe(timeout(300000));
   }
 
   public getGraphics(url: string) {
