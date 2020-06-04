@@ -13,7 +13,7 @@ export class GraphicsComponent implements OnInit {
   imageToShow: any;
   isImageLoading: boolean;
   graphicsTypes: string[] = [];
-  link = `http://ml-based-classification-back.herokuapp.com/classification-data?token=${this.tokenService.generateTokenIfNotExists()}&method_name=*`;
+  link = `https://ml-based-classification-back.herokuapp.com/classification-data?token=${this.tokenService.generateTokenIfNotExists()}&method_name=*`;
 
   constructor(private resultService: ResultService, private classificationService: ClassificationService,
               private tokenService: TokenService) {

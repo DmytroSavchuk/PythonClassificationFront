@@ -27,7 +27,7 @@ export class ResultComponent implements OnInit {
     this.initializeParameters();
     this.withImages = this.resultService.getIsWithImages();
     this.methodName = this.resultService.getMethodName();
-    this.link = `http://ml-based-classification-back.herokuapp.com/classification-data?token=${this.tokenService.generateTokenIfNotExists()}&method_name=${this.methodName}`;
+    this.link = `https://ml-based-classification-back.herokuapp.com/classification-data?token=${this.tokenService.generateTokenIfNotExists()}&method_name=${this.methodName}`;
     if (this.withImages) {
       this.allMethodResults = this.resultService.getMethodResults();
     } else {
