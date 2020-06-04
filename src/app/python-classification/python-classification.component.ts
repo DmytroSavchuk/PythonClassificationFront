@@ -86,7 +86,7 @@ export class PythonClassificationComponent implements OnInit, OnChanges {
         }
       }
       this.service.classify(new ClassificationRequest('PolynomialFeatures', this.method.name,
-        mapOfArgs, degreeMap)).subscribe(response => {
+        mapOfArgs, degreeMap, true)).subscribe(response => {
         const map = new TSMap<string, string>().fromJSON(response);
         this.resultService.setMap(map);
         this.resultService.setIsWithImages(false);
